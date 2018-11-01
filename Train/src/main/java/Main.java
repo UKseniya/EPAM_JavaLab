@@ -45,8 +45,8 @@ public class Main {
         int wagonNumber = (train2.getTrainWeight() - locomotive.weight - postCar.weight)/wagon.weight;
 
         for(int i = 0; i < wagonNumber; i++){
-            Wagon wagon1 = new Wagon();
-            carriages2.add(wagon1);
+            Wagon car = new Wagon();
+            carriages2.add(car);
         }
 
         Locomotive locomotive2 = new Locomotive();
