@@ -1,11 +1,11 @@
 import java.util.Objects;
 
 public class PassengerCar extends Carriage{
-    int seats;
+    private int seats;
 
 
     public PassengerCar() {
-        setType(CarriageType.PassengerCar);
+        setType(CarriageType.PASSENGER_CAR);
     }
 
     public PassengerCar(int id, int weight) {

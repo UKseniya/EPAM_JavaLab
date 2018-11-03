@@ -1,9 +1,9 @@
 import java.util.Objects;
 
 public class Carriage {
-    int id;
-    int weight;
-    CarriageType type;
+    private int id;
+    private int weight;
+    private CarriageType type;
 
     public Carriage() {
     }

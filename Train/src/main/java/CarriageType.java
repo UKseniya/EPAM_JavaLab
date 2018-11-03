@@ -1,6 +1,6 @@
 public enum CarriageType {
-    PassengerCar,
-    Wagon,
-    Locomotive,
-    PostCar
+    PASSENGER_CAR,
+    WAGON,
+    LOCOMOTIVE,
+    POST_CAR
 }

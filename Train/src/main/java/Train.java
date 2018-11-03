@@ -52,7 +52,7 @@ public class Train {
         int numberOfPassengerCars = 0;
         for(int i = 0; i < carriages.size(); i++){
             Carriage car = carriages.get(i);
-           if (car.getType() == CarriageType.PassengerCar) {
+           if (car.getType() == CarriageType.PASSENGER_CAR) {
                numberOfPassengerCars++;
             }
         }
@@ -63,7 +63,7 @@ public class Train {
         int numberOfWagons = 0;
         for(int i = 0; i < carriages.size(); i++){
             Carriage car = carriages.get(i);
-            if (car.getType() == CarriageType.Wagon){
+            if (car.getType() == CarriageType.WAGON){
                 numberOfWagons++;
             }
         }
@@ -74,7 +74,7 @@ public class Train {
         int numberOfLocomotive = 0;
         for(int i = 0; i < carriages.size(); i++){
             Carriage car = carriages.get(i);
-            if (car.getType() == CarriageType.Locomotive){
+            if (car.getType() == CarriageType.LOCOMOTIVE){
                 numberOfLocomotive++;
             }
         }
@@ -85,7 +85,7 @@ public class Train {
         int numberOfPostCars = 0;
         for(int i = 0; i < carriages.size(); i++){
             Carriage car = carriages.get(i);
-            if (car.getType() == CarriageType.PostCar){
+            if (car.getType() == CarriageType.POST_CAR){
                 numberOfPostCars++;
             }
         }

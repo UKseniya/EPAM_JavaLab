@@ -2,12 +2,12 @@ import java.util.Objects;
 
 public class Locomotive extends Carriage {
     //public enum LocomotiveType{ Steam, Diesel, Electric };
-    int power;
-    int capacity;
+    private int power;
+    private int capacity;
 
 
     public Locomotive() {
-        setType(CarriageType.Locomotive);
+        setType(CarriageType.LOCOMOTIVE);
     }
 
     public Locomotive(int id, int weight, int power) {

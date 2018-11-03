@@ -1,10 +1,10 @@
 import java.util.Objects;
 
 public class PostCar extends Carriage{
-    int capacity;
+    private int capacity;
 
     public PostCar() {
-        setType(CarriageType.PostCar);
+        setType(CarriageType.POST_CAR);
     }
 
     public PostCar(int id, int weight) {

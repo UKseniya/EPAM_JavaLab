@@ -1,10 +1,10 @@
 import java.util.Objects;
 
 public class Wagon extends Carriage{
-    String category;
+    private String category;
 
     public Wagon() {
-        setType(CarriageType.Wagon);
+        setType(CarriageType.WAGON);
     }
 
     public Wagon(int id, int weight) {

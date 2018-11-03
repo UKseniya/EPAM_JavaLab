@@ -24,7 +24,7 @@ public class Main {
         PostCar postCar = new PostCar(1, 50);
         Locomotive locomotive = new Locomotive(1, 130, 17000);
 
-        int passengerCarNumber = (train1.getTrainWeight() - locomotive.weight - postCar.weight)/passengerCar.weight;
+        int passengerCarNumber = (train1.getTrainWeight() - locomotive.getWeight() - postCar.getWeight())/passengerCar.getWeight();
 
         for(int i = 0; i < passengerCarNumber; i++){
             PassengerCar car = new PassengerCar();
@@ -42,7 +42,7 @@ public class Main {
         List<Carriage> carriages2 = new ArrayList<>();
         Wagon wagon = new Wagon(1, 100);
 
-        int wagonNumber = (train2.getTrainWeight() - locomotive.weight - postCar.weight)/wagon.weight;
+        int wagonNumber = (train2.getTrainWeight() - locomotive.getWeight() - postCar.getWeight())/wagon.getId();
 
         for(int i = 0; i < wagonNumber; i++){
             Wagon car = new Wagon();
