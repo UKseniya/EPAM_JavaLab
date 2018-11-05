@@ -55,6 +55,7 @@ public class Train {
            if (car.getType() == CarriageType.PASSENGER_CAR) {
                numberOfPassengerCars++;
             }
+            //System.out.println(numberOfPassengerCars);
         }
         return numberOfPassengerCars;
     }

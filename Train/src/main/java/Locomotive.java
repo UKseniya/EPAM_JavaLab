@@ -15,6 +15,7 @@ public class Locomotive extends Carriage {
         this.power = power;
     }
 
+
     public int getPower() {
         return power;
     }
