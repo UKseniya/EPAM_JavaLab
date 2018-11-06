@@ -3,30 +3,19 @@ import java.util.List;
 
 public class Main {
     // Cоздаем константы, определяющие вес вагонов и поезда
-    public static final int TRAIN_WEIGHT = 1450;
+    public static final int LOCOMOTIVE_POWER = 17000;
     public static final int LOCOMOTIVE_WEIGHT = 130;
     public static final int PASSENGER_CAR_WEIGHT = 80;
     public static final int WAGON_CAR_WEIGHT = 100;
     public static final int POST_CAR_WEIGHT = 50;
+    public static final int RESTAURANT_CAR_WEIGHT = 80;
 
-    /* Вес поезда = (сила тяги локомотива - (сопротивление+наибольший уклон)* вес локомотива) / (сопротивление + наибольший уклон
-     * Например,
-     * ТЭП70
-     * вес = 130т
-     * мощность = 4000л.с.
-     * сила тяги = 17000т.с. при скорости 50км/ч
-     * сила трения = 1,88
-     * уклон = 9,5%
-     *
-     * Расчет:
-     * при скорости 50км/ч
-     * (17000 - (1,88+9,5) * 130)/(1,88+9,5) = 1440т - вес поезда.
-     * Один вагон весит примерно 100т, следовательное 14 вагонов*/
 
     public static void main(String[] args) {
+
         // Создаем поезда
-        Train passengerTrain = createTrain(TRAIN_WEIGHT, CarriageType.PASSENGER_CAR);
-        Train wagonTrain = createTrain(TRAIN_WEIGHT, CarriageType.WAGON);
+        Train passengerTrain = createTrain(LOCOMOTIVE_POWER, LOCOMOTIVE_WEIGHT, CarriageType.PASSENGER_CAR);
+        Train wagonTrain = createTrain(LOCOMOTIVE_POWER, LOCOMOTIVE_WEIGHT, CarriageType.WAGON);
 
         System.out.println(passengerTrain.toString());
         System.out.println(wagonTrain.toString());
@@ -35,13 +24,13 @@ public class Main {
     // Метод, в котором находим количество вагонов в поезде без локомотива для грузового состава + без почтового
     // для пассажирского состава
 
-    public static int getCarriageNumber(int trainWeight, int locomotiveWeight, int carriageWeight, CarriageType type) {
-        int carNumber = (TRAIN_WEIGHT - LOCOMOTIVE_WEIGHT) / carriageWeight;;
+    public static int getCarriageNumber(int trainWeight, int carriageWeight, CarriageType type) {
+        int carNumber = 0;
         if ( type == CarriageType.WAGON){
-            carNumber = (TRAIN_WEIGHT - LOCOMOTIVE_WEIGHT) / carriageWeight;
+            carNumber = (trainWeight - LOCOMOTIVE_WEIGHT) / carriageWeight;
         }
         else {
-            carNumber = (TRAIN_WEIGHT - LOCOMOTIVE_WEIGHT - POST_CAR_WEIGHT) / carriageWeight;
+            carNumber = (trainWeight - LOCOMOTIVE_WEIGHT - POST_CAR_WEIGHT - RESTAURANT_CAR_WEIGHT) / carriageWeight;
         }
 
         return carNumber;
@@ -56,17 +45,20 @@ public class Main {
             car.setType(type);
             carriages.add(car);
         }
-        Locomotive locomotive = new Locomotive();
+        Carriage locomotive = new Carriage(CarriageType.LOCOMOTIVE);
         carriages.add(locomotive);
         if ( type == CarriageType.PASSENGER_CAR){
-            PostCar postCar = new PostCar();
+            Carriage postCar = new Carriage(CarriageType.POST_CAR);
+            Carriage restaurant = new Carriage(CarriageType.RESTAURANT_CAR);
             carriages.add(postCar);
+            carriages.add(restaurant);
         }
         return carriages;
     }
 
     // Метод, в котором собираем поезд
-    public static Train createTrain (int trainWeight, CarriageType type){
+    public static Train createTrain (int locomotivePower, int locomotiveWeight, CarriageType type){
+        int trainWeight = Train.calculateTrainWeight(locomotivePower, locomotiveWeight);
         int carWeight = 0;
         if ( type == CarriageType.PASSENGER_CAR ){
             carWeight = PASSENGER_CAR_WEIGHT;
@@ -75,8 +67,7 @@ public class Main {
             carWeight = WAGON_CAR_WEIGHT;
         }
 
-        int passengerCarNumber = getCarriageNumber(trainWeight, LOCOMOTIVE_WEIGHT, carWeight, type);
-
+        int passengerCarNumber = getCarriageNumber(trainWeight, carWeight, type);
         Train train = new Train();
         List<Carriage> carriages = createCarriagesList(passengerCarNumber, type);
         train.setCarriages(carriages);

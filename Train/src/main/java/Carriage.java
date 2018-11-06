@@ -8,6 +8,10 @@ public class Carriage {
     public Carriage() {
     }
 
+    public Carriage(CarriageType type) {
+        this.type = type;
+    }
+
     public Carriage(int id, int weight) {
         this.id = id;
         this.weight = weight;
