@@ -14,8 +14,8 @@ public class Main {
     public static void main(String[] args) {
 
         // Создаем поезда
-        Train passengerTrain = createTrain(LOCOMOTIVE_POWER, LOCOMOTIVE_WEIGHT, CarriageType.PASSENGER_CAR);
-        Train wagonTrain = createTrain(LOCOMOTIVE_POWER, LOCOMOTIVE_WEIGHT, CarriageType.WAGON);
+        Train passengerTrain = assembleTrain(LOCOMOTIVE_POWER, LOCOMOTIVE_WEIGHT, CarriageType.PASSENGER_CAR);
+        Train wagonTrain = assembleTrain(LOCOMOTIVE_POWER, LOCOMOTIVE_WEIGHT, CarriageType.WAGON);
 
         System.out.println(passengerTrain.toString());
         System.out.println(wagonTrain.toString());
@@ -24,7 +24,7 @@ public class Main {
     // Метод, в котором находим количество вагонов в поезде без локомотива для грузового состава + без почтового
     // для пассажирского состава
 
-    public static int getCarriageNumber(int trainWeight, int carriageWeight, CarriageType type) {
+    public static int getCarriageNumber(int trainWeight, int locomotiveWeight, int carriageWeight, CarriageType type) {
         int carNumber = 0;
         if ( type == CarriageType.WAGON){
             carNumber = (trainWeight - LOCOMOTIVE_WEIGHT) / carriageWeight;
@@ -45,6 +45,7 @@ public class Main {
             car.setType(type);
             carriages.add(car);
         }
+
         Carriage locomotive = new Carriage(CarriageType.LOCOMOTIVE);
         carriages.add(locomotive);
         if ( type == CarriageType.PASSENGER_CAR){
@@ -57,7 +58,7 @@ public class Main {
     }
 
     // Метод, в котором собираем поезд
-    public static Train createTrain (int locomotivePower, int locomotiveWeight, CarriageType type){
+    public static Train assembleTrain (int locomotivePower, int locomotiveWeight, CarriageType type){
         int trainWeight = Train.calculateTrainWeight(locomotivePower, locomotiveWeight);
         int carWeight = 0;
         if ( type == CarriageType.PASSENGER_CAR ){
@@ -67,7 +68,7 @@ public class Main {
             carWeight = WAGON_CAR_WEIGHT;
         }
 
-        int passengerCarNumber = getCarriageNumber(trainWeight, carWeight, type);
+        int passengerCarNumber = getCarriageNumber(trainWeight, LOCOMOTIVE_WEIGHT, carWeight, type);
         Train train = new Train();
         List<Carriage> carriages = createCarriagesList(passengerCarNumber, type);
         train.setCarriages(carriages);

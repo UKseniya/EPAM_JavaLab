@@ -6,10 +6,6 @@ public class Train {
     private static double slope = 9.5;
 
 
-    public Train() {
-    }
-
-
     /* Вес поезда = (сила тяги локомотива - (сопротивление+наибольший уклон)* вес локомотива) / (сопротивление + наибольший уклон)
      * Например,
      * ТЭП70
@@ -23,6 +19,10 @@ public class Train {
      * при скорости 50км/ч
      * (17000 - (1,88+9,5) * 130)/(1,88+9,5) = 1440т - вес поезда.
      * Один вагон весит примерно 100т, следовательное 14 вагонов*/
+
+    public Train() {
+    }
+
 
     public static int calculateTrainWeight(int locomotivePower, int locomotiveWeight) {
         int trainWeight = 0;
@@ -40,74 +40,34 @@ public class Train {
         this.carriages = carriages;
     }
 
-    public int getPassengerCarNumber(){
-        int numberOfPassengerCars = 0;
-        for(int i = 0; i < carriages.size(); i++){
+    public int getCarNumber(CarriageType type) {
+        int numberOfCars = 0;
+        for (int i = 0; i < carriages.size(); i++) {
             Carriage car = carriages.get(i);
-           if (car.getType() == CarriageType.PASSENGER_CAR) {
-               numberOfPassengerCars++;
+            if (car.getType() == type) {
+                numberOfCars++;
             }
-        }
-        return numberOfPassengerCars;
-    }
 
-    public int getWagonNumber(){
-        int numberOfWagons = 0;
-        for(int i = 0; i < carriages.size(); i++){
-            Carriage car = carriages.get(i);
-            if (car.getType() == CarriageType.WAGON){
-                numberOfWagons++;
-            }
         }
-        return numberOfWagons;
-    }
-
-    public int getLocomotiveNumber(){
-        int numberOfLocomotive = 0;
-        for(int i = 0; i < carriages.size(); i++){
-            Carriage car = carriages.get(i);
-            if (car.getType() == CarriageType.LOCOMOTIVE){
-                numberOfLocomotive++;
-            }
-        }
-        return numberOfLocomotive;
-    }
-
-    public int getPostCarNumber(){
-        int numberOfPostCars = 0;
-        for(int i = 0; i < carriages.size(); i++){
-            Carriage car = carriages.get(i);
-            if (car.getType() == CarriageType.POST_CAR){
-                numberOfPostCars++;
-            }
-        }
-        return numberOfPostCars;
-    }
-
-    public int getRestaurantCarNumber(){
-        int numberOfRestaurantCars = 0;
-        for(int i = 0; i < carriages.size(); i++){
-            Carriage car = carriages.get(i);
-            if (car.getType() == CarriageType.RESTAURANT_CAR){
-                numberOfRestaurantCars++;
-            }
-        }
-        return numberOfRestaurantCars;
+        return numberOfCars;
     }
 
     @Override
     public String toString() {
-        if ( getPassengerCarNumber() != 0 ){
+        if ( getCarNumber(CarriageType.PASSENGER_CAR) !=0){
             return "The train consists of" +
-                    " passenger cars:" + getPassengerCarNumber() +
-                    ", restaurant:" + getRestaurantCarNumber() +
-                    ", locomotive:" + getLocomotiveNumber() +
-                    " and post car:" + getPostCarNumber();
+                    " Locomotives: " + getCarNumber(CarriageType.LOCOMOTIVE) +
+                    ", Passenger Cars: " + getCarNumber(CarriageType.PASSENGER_CAR) +
+                    ", Restaurant Cars: " + getCarNumber(CarriageType.RESTAURANT_CAR) +
+                    ", Post Cars: " + getCarNumber(CarriageType.POST_CAR);
         }
         else {
             return "The train consists of" +
-                    " wagons:" + getWagonNumber() +
-                    " and locomotive:" + getLocomotiveNumber();
+                    " Locomotives: " + getCarNumber(CarriageType.LOCOMOTIVE) +
+                    ", Wagons: " + getCarNumber(CarriageType.WAGON);
         }
     }
 }
+
+
+
