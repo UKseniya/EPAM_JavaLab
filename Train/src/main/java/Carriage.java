@@ -47,12 +47,13 @@ public class Carriage {
         if (o == null || getClass() != o.getClass()) return false;
         Carriage carriage = (Carriage) o;
         return id == carriage.id &&
-                weight == carriage.weight;
+                weight == carriage.weight &&
+                type == carriage.type;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, weight);
+        return Objects.hash(id, weight, type);
     }
 }

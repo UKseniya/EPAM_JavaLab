@@ -54,7 +54,7 @@ public class Train {
 
     @Override
     public String toString() {
-        if ( getCarNumber(CarriageType.PASSENGER_CAR) !=0){
+        if ( getCarNumber(CarriageType.PASSENGER_CAR) != 0){
             return "The train consists of" +
                     " Locomotives: " + getCarNumber(CarriageType.LOCOMOTIVE) +
                     ", Passenger Cars: " + getCarNumber(CarriageType.PASSENGER_CAR) +
