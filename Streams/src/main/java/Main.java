@@ -56,7 +56,7 @@ public class Main {
             convertedString = convertedString.reverse();
             System.out.println(convertedString.toString());
             writerTwo.write(convertedString.toString());
-            
+
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());
