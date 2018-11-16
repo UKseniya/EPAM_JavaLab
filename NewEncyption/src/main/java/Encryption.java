@@ -16,6 +16,7 @@ public class Encryption {
 
                 for ( int i = 0; i < originalText.length(); i++ ){
                     int position = alphabet.indexOf(originalText.charAt(i));
+                    position += 2;
                     encryptedText.append(numberFormat.format(position));
                 }
                 writingEncrypted.write(encryptedText.toString());
@@ -38,6 +39,7 @@ public class Encryption {
 
             for ( int i = 0; i < encryptedText.length(); i+=2 ){
                 int position = Integer.parseInt(encryptedText.substring(i, i+2));
+                position -= 2;
                 decryptedText.append(alphabet.charAt(position));
             }
             String decryptedString = decryptedText.toString();
