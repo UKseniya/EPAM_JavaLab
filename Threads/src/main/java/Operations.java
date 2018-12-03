@@ -1,8 +1,7 @@
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Operations {
+    public final static int WAIT_SEC = 1000;
     public static void main(String[] args) {
         final Account a = new Account(1000 );
         final Account b = new Account(2000 );
@@ -33,7 +32,7 @@ public class Operations {
         }).start();
     }
 
-    static void transfer( Account acc1, Account acc2, int amount) throws InsufficientFundException{
+    static void transfer( Account acc1, Account acc2, int amount ) throws InsufficientFundException{
 
         if ( acc1.getBalance() < amount ){
             throw  new InsufficientFundException();
@@ -54,12 +53,17 @@ public class Operations {
                             acc2.getLock().unlock();
                         }
                     }
+                    else {
+                        acc2.isFailTransferCount();
+                        System.out.println("Error waiting Lock");
+                    }
                 }
                 finally {
                     acc1.getLock().unlock();
                 }
             }
             else {
+                acc1.isFailTransferCount();
                 System.out.println("Error waiting Lock");
             }
         } catch (InterruptedException e) {

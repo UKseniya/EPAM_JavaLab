@@ -1,9 +1,10 @@
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Account {
-    public final static int WAIT_SEC = 1000;
     private int balance;
+    private AtomicInteger failCounter = new AtomicInteger();
     Lock lock = new ReentrantLock();
 
     public Account(int balance) {
@@ -26,11 +27,20 @@ public class Account {
         this.lock = lock;
     }
 
+    public AtomicInteger getFailCounter() {
+        return failCounter;
+    }
+
     public void withdraw(int amount){
         balance -= amount;
     }
 
     public void deposit(int amount){
         balance += amount;
+    }
+
+    public void isFailTransferCount(){
+        failCounter.incrementAndGet();
+        System.out.println("Fails: " + failCounter);
     }
 }

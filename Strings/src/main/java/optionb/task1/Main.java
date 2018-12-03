@@ -14,13 +14,13 @@ public class Main {
         List<String> words = sentence.divideWords(source);
 
         for (String element : words) {
-            //System.out.println(element);
+            System.out.println(element);
         }
 
         List<String> sentences = paragraph.divideSentences(source);
 
         for ( String element : sentences ){
-            //System.out.println(element);
+            System.out.println(element);
 
         }
 
