@@ -5,10 +5,8 @@ import java.util.List;
 
 public class Paragraph {
     private List<Sentence> sentences = new LinkedList<>();
-    private String content = new String();
 
     public Paragraph(String content) {
-        this.content = content;
         sentences = divideSentences(content);
     }
 
@@ -20,13 +18,6 @@ public class Paragraph {
         this.sentences = sentences;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public List<Sentence> divideSentences(String content) {
         String sentence = null;

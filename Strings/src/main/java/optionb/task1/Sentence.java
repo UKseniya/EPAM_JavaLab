@@ -5,10 +5,8 @@ import java.util.List;
 
 public class Sentence {
     private List<Word> words = new LinkedList<>();
-    private String content = new String();
 
     public Sentence(String content) {
-        this.content = content;
         words = divideWords(content);
     }
 
@@ -24,13 +22,6 @@ public class Sentence {
         this.words = words;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public List<Word> divideWords(String content) {
         String[] array = null;
@@ -43,10 +34,4 @@ public class Sentence {
         return words;
     }
 
-    @Override
-    public String toString() {
-        return "Sentence{" +
-                "content='" + content + '\'' +
-                '}';
-    }
 }
