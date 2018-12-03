@@ -1,13 +1,23 @@
 package optionb.task1;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Paragraph {
-    private List<Sentence> sentences = new LinkedList<>();
+    private String content;
+    private List<Sentence> sentences = new ArrayList<>();
 
     public Paragraph(String content) {
+        this.content = content;
         sentences = divideSentences(content);
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public List<Sentence> getSentences() {
@@ -31,6 +41,11 @@ public class Paragraph {
             // ((\d+\.\s*)*[А-ЯA-Z]((т.п.|т.д.|пр.)|[^?!.\(]|\([^\)]*\))*[.?!])
         }
         return sentences;
+    }
+
+    @Override
+    public String toString() {
+        return content;
     }
 }
 

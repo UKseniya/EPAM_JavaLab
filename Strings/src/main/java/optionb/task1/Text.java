@@ -3,22 +3,23 @@ package optionb.task1;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Text {
-    private List<Paragraph> paragraphs = new LinkedList<>();
-
-    public Text(List<Paragraph> paragraphs) {
-        this.paragraphs = paragraphs;
-    }
-
-    public Text() {
-
-    }
+    private String content;
+    private List<Paragraph> paragraphs = new ArrayList<>();
 
     public Text(File source) {
         paragraphs = divideParagraphs(source);
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public List<Paragraph> getParagraphs() {
@@ -29,20 +30,19 @@ public class Text {
         this.paragraphs = paragraphs;
     }
 
-    public List<Paragraph> divideParagraphs (File source ){
-        String [] array;
-        try ( FileInputStream sourceText = new FileInputStream(source) ){
+    public List<Paragraph> divideParagraphs(File source) {
+        String[] array;
+        try (FileInputStream sourceText = new FileInputStream(source)) {
             byte[] string = new byte[sourceText.available()];
             sourceText.read(string);
-            String text = new String(string);
+            content = new String(string);
 
-            array = text.split("\n");
+            array = content.split("\n");
 
-            for ( String element : array ){
+            for (String element : array) {
                 paragraphs.add(new Paragraph(element));
             }
-        }
-        catch ( IOException e ){
+        } catch (IOException e) {
             e.getMessage();
         }
         return paragraphs;
@@ -50,15 +50,6 @@ public class Text {
 
     @Override
     public String toString() {
-        StringBuilder  builder = new StringBuilder();
-        for (Paragraph paragraph: paragraphs){
-            for(Sentence sentence: paragraph.getSentences()){
-                for(Word word: sentence.getWords()){
-                    builder.append(word.getSomeWord());
-                    builder.append(" ");
-                }
-            }
-        }
-        return builder.toString();
+        return content;
     }
 }
