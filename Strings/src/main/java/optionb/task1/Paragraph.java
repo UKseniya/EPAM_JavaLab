@@ -1,37 +1,46 @@
 package optionb.task1;
 
-import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Paragraph {
-    private static List<String> sentencesInParagraph = new LinkedList<>();
+    private List<Sentence> sentences = new LinkedList<>();
+    private String content = new String();
 
+    public Paragraph(String content) {
+        this.content = content;
+        sentences = divideSentences(content);
+    }
 
+    public List<Sentence> getSentences() {
+        return sentences;
+    }
 
-    public static List<String> divideSentences (File source ){
+    public void setSentences(List<Sentence> sentences) {
+        this.sentences = sentences;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public List<Sentence> divideSentences(String content) {
         String sentence = null;
-        String [] sentences = null;
-        try ( FileInputStream sourceText = new FileInputStream(source) ){
-            byte[] string = new byte[sourceText.available()];
-            sourceText.read(string);
-            String text = new String(string);
-            sentences = text.split("[.!?]\\s*");
+        String[] array = null;
 
+        array = content.split("[.!?]\\s*");
+        for (String element : array) {
+            sentences.add(new Sentence(element));
             //To divide text with abbreviations taken into account.
             //[.!?]\s*?((\d+\s*)*[A-ZА-Я]+\s*)
             // ((\d+\.\s*)*[А-ЯA-Z]((т.п.|т.д.|пр.)|[^?!.\(]|\([^\)]*\))*[.?!])
-
-            for ( String element : sentences ){
-                sentence = element;
-                sentencesInParagraph.add(sentence);
-            }
         }
-        catch ( IOException e ){
-            e.getMessage();
-        }
-        return sentencesInParagraph;
+        return sentences;
     }
-
 }
+
 

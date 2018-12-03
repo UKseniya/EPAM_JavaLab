@@ -1,29 +1,52 @@
 package optionb.task1;
 
-import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Sentence {
-    private static List<String> wordsInSentence = new LinkedList<>();
+    private List<Word> words = new LinkedList<>();
+    private String content = new String();
 
+    public Sentence(String content) {
+        this.content = content;
+        words = divideWords(content);
+    }
 
-    public static List<String> divideWords(File source) {
-        String word = null;
-        String[] words = null;
-        try (FileInputStream sourceText = new FileInputStream(source)) {
-            byte[] string = new byte[sourceText.available()];
-            sourceText.read(string);
-            String text = new String(string);
-            words = text.split("[\\p{Punct}\\s]+");
+    public Sentence() {
 
-            for (String element : words) {
-                word = element;
-                wordsInSentence.add(word);
-            }
-        } catch (IOException e) {
-            e.getMessage();
+    }
+
+    public List<Word> getWords() {
+        return words;
+    }
+
+    public void setWords(List<Word> words) {
+        this.words = words;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public List<Word> divideWords(String content) {
+        String[] array = null;
+
+        array = content.split("[\\p{Punct}\\s]+");
+
+        for (String element : array) {
+            words.add(new Word(element));
         }
-        return wordsInSentence;
+        return words;
+    }
+
+    @Override
+    public String toString() {
+        return "Sentence{" +
+                "content='" + content + '\'' +
+                '}';
     }
 }
