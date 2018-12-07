@@ -73,9 +73,10 @@ public class Main {
         secondLevelSix.getReports().add(thirdLevelNine);
         net.put(thirdLevelNine.getId(), thirdLevelNine);
 
+        System.out.println(leader);
         leader.printReports();
 
-        System.out.println(secondLevelFive);
-        secondLevelFive.printLeaders(net);
+//        System.out.println(secondLevelFive);
+//        secondLevelFive.printLeaders(net);
     }
 }

@@ -5,6 +5,7 @@ public class Employee {
     private int parentId;
     private String name;
     private List<Employee> reports = new ArrayList<>();
+    static int space = 0;
 
     public Employee(int id, int parentId, String name) {
         this.id = id;
@@ -46,19 +47,28 @@ public class Employee {
 
     public void printReports() {
         if(this.getReports().size() != 0){
-            System.out.println(this + " is a leader for: " + reports);
+            space++;
             for (Employee report : reports){
+                for(int i = 0; i < space; i++){
+                    System.out.print("    ");
+                }
+                System.out.println(report);
                 if(report.getReports().size() != 0){
                     report.printReports();
                 }
             }
+            space--;
         }
     }
 
     public void printLeaders(Map<Integer, Employee> employees){
         if(this.getParentId() != 0){
+            space++;
             Employee leader = employees.get(parentId);
-            System.out.println(this + " reported to: " + leader);
+            for(int i = 0; i < space; i++){
+                System.out.print("    ");
+            }
+            System.out.println(leader);
             if(leader.getParentId() != 0){
                 leader.printLeaders(employees);
             }
