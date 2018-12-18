@@ -7,28 +7,39 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SequenceRunner {
-    static String string;
+    private static String string;
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String sequenceOne = reader.readLine();
         String sequenceTwo = reader.readLine();
 
-        // First, check if the sequence contains only 0 and 1.
-        if (!sequenceOne.matches("[01]+") || (!sequenceTwo.matches("[01]+"))) {
-            System.out.println("The sequence shall contain 0 and 1 only.");
-        } else if (sequenceOne.length() == sequenceTwo.length()) {
-            if (isFirstCharsEqual(sequenceOne, sequenceTwo)) {
-                if (isSequenceEqual(sequenceOne, sequenceTwo)) {
-                    System.out.println("The sequences are equal");
+        try{
+            checkSequence(sequenceOne, sequenceTwo);
+            if (sequenceOne.length() == sequenceTwo.length()) {
+                if (isFirstCharsEqual(sequenceOne, sequenceTwo)) {
+                    if (isSequenceEqual(sequenceOne, sequenceTwo)) {
+                        System.out.println("The sequences are equal");
+                    } else {
+                        System.out.println("The sequences are not equal");
+                    }
                 } else {
-                    System.out.println("The sequences are not equal");
+                    System.out.println("The first symbol in sequences is different");
                 }
             } else {
-                System.out.println("The first symbol in sequences is different");
+                System.out.println("The length of sequences is different.");
             }
-        } else {
-            System.out.println("The length of sequences is different.");
+        }
+        catch (RuntimeException exception){
+            System.out.println(exception.getMessage());
+        }
+
+    }
+
+    //Validation of the sequences entered
+    public static void checkSequence(String sequenceOne, String sequenceTwo){
+        if (!sequenceOne.matches("[01]+") || (!sequenceTwo.matches("[01]+"))) {
+            throw new RuntimeException ("The sequence shall contain 0 and 1 only.");
         }
     }
 
