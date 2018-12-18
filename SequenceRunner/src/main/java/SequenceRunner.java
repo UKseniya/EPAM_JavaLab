@@ -1,5 +1,3 @@
-package src.main.sequence;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,7 +41,7 @@ public class SequenceRunner {
         }
     }
 
-            //The method checks if the number of zeroes in both sequences is the same
+    //The method checks if the number of zeroes in both sequences is the same
 //        public static boolean isEqualQuantity(String one, String two) {
 //        int firstSequenceZeroes = calculateZeros(one);
 //        int secondSequenceZeroes = calculateZeros(two);
@@ -52,7 +50,7 @@ public class SequenceRunner {
 //        }
 //        return false;
 //    }
-        // The method calculates the number of zeroes in a sequence.
+    // The method calculates the number of zeroes in a sequence.
 //    public static int calculateZeros(String sequence) {
 //        char[] chars = sequence.toCharArray();
 //        int zeros = 0;
