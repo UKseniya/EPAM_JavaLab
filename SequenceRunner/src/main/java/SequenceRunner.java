@@ -3,7 +3,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/*
+* Output:
+* 10110110111000111001
+10111011011100011001
+11111110101010001001
+11111110101010001001
+The sequences are equal
+* */
 public class SequenceRunner {
     private static String string;
 
@@ -22,7 +29,7 @@ public class SequenceRunner {
                         System.out.println("The sequences are not equal");
                     }
                 } else {
-                    System.out.println("The first symbol in sequences is different");
+                    System.out.println("The first symbols in sequences are different");
                 }
             } else {
                 System.out.println("The length of sequences is different.");

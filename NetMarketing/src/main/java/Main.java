@@ -1,5 +1,31 @@
 import java.util.HashMap;
 import java.util.Map;
+/*
+* Output:
+* Ivanov has the following reports:
+    Petrov
+        Scott
+            Bullock
+            Stone
+        Gale
+            Warren
+    Sidorov
+        Brand
+            Durov
+            Smirnov
+        Litt
+            Aldrich
+    Bridge
+        Spector
+        Puslon
+            Pratt
+            Wensky
+            Delon
+        Simpson
+Spector is reported to the following leaders:
+    Bridge
+        Ivanov
+*/
 
 public class Main {
     public static void main(String[] args) {
@@ -73,10 +99,10 @@ public class Main {
         secondLevelSix.getReports().add(thirdLevelNine);
         net.put(thirdLevelNine.getId(), thirdLevelNine);
 
-        System.out.println(leader);
+        System.out.println(leader + " has the following reports:");
         leader.printReports();
 
-//        System.out.println(secondLevelFive);
-//        secondLevelFive.printLeaders(net);
+        System.out.println(secondLevelFive + " is reported to the following leaders:");
+        secondLevelFive.printLeaders(net);
     }
 }

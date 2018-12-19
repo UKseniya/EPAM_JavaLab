@@ -1,3 +1,13 @@
+/* The runner stops when the String entered is not a palindrome.
+*
+* Output:
+*Tenet
+Radar
+My gym
+Red rum, sir, is murder
+Star
+Star is not a palindrome
+* */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,13 +20,16 @@ public class PalindromeRunner {
 
         while (isPalindrome){
             word = reader.readLine();
-            StringBuilder revertedWord = new StringBuilder(word);
+            StringBuilder receivedString = new StringBuilder("");
+            String[] substrings = word.toLowerCase().split("[\\p{Punct}\\s]+");
+            for (String element : substrings){
+                receivedString.append(element);
+            }
+            StringBuilder revertedWord = new StringBuilder(receivedString);
             revertedWord = revertedWord.reverse();
-            if(word.equals(revertedWord.toString())){
-                System.out.println(revertedWord + " is a palindrome");
-            } else {
+            if(!receivedString.toString().equals(revertedWord.toString())){
                 isPalindrome = false;
-                System.out.println("the word isn't a palindrome");
+                System.out.println(word + " is not a palindrome");
             }
         }
     }

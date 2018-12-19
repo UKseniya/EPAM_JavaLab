@@ -3,6 +3,7 @@ import java.util.*;
 public class Ticket {
     private int id;
     private Map<Integer, Boolean> numbers = new HashMap<>();
+    int matchedNumbers;
 
 
     public Ticket(int totalNumbers, int range) {
@@ -19,7 +20,7 @@ public class Ticket {
         for (int i = 0; i < totalNumbers; i++) {
             Integer index = new Random().nextInt(availableNumbers.size());
             Integer number = availableNumbers.get(index);
-            availableNumbers.remove(index);
+            availableNumbers.remove(number);
             numbers.put(number, false);
         }
     }
@@ -38,11 +39,13 @@ public class Ticket {
     public void checkNumber(Integer number) {
         if (numbers.containsKey(number)) {
             numbers.put(number, true);
+            matchedNumbers++;
         }
     }
 
     public int getMatchedNumbers() {
-        return (int) numbers.values().stream().filter(e -> e).count();
+        return matchedNumbers;
+        //return (int) numbers.values().stream().filter(e -> e).count();
     }
 
     public int getNumbersCount() {
