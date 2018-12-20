@@ -47,28 +47,7 @@ public class SequenceRunner {
             throw new RuntimeException ("The sequence shall contain 0 and 1 only.");
         }
     }
-
-    //The method checks if the number of zeroes in both sequences is the same
-//        public static boolean isEqualQuantity(String one, String two) {
-//        int firstSequenceZeroes = calculateZeros(one);
-//        int secondSequenceZeroes = calculateZeros(two);
-//        if (firstSequenceZeroes == secondSequenceZeroes) {
-//            return true;
-//        }
-//        return false;
-//    }
-    // The method calculates the number of zeroes in a sequence.
-//    public static int calculateZeros(String sequence) {
-//        char[] chars = sequence.toCharArray();
-//        int zeros = 0;
-//        for (char ch : chars) {
-//            if (ch == '0') {
-//                zeros++;
-//            }
-//        }
-//        return zeros;
-//    }
-
+    
     // The method checks if the first symbol in sequences is the same.
     public static boolean isFirstCharsEqual(String one, String two) {
         char[] charsOne = one.toCharArray();
