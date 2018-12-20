@@ -47,7 +47,7 @@ public class SequenceRunner {
             throw new RuntimeException ("The sequence shall contain 0 and 1 only.");
         }
     }
-    
+
     // The method checks if the first symbol in sequences is the same.
     public static boolean isFirstCharsEqual(String one, String two) {
         char[] charsOne = one.toCharArray();
@@ -88,7 +88,6 @@ public class SequenceRunner {
         }
         return string;
     }
-
 
     // The method compares two sequences received after replacement of substrings.
     public static boolean isSequenceEqual(String one, String two) {
