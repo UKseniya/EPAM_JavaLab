@@ -5,10 +5,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /*
 * Output:
-* 10110110111000111001
-10111011011100011001
-11111110101010001001
-11111110101010001001
+* 1001011001011000111100001101001
+1011000011001110010001011001101
+1111111010101001001001000100001
+1111111010101001001001000100001
 The sequences are equal
 * */
 public class SequenceRunner {
@@ -79,28 +79,43 @@ public class SequenceRunner {
         return false;
     }
 
-    //The method replaces substings for reversed ones.
-    public static String replaceChars(String sequence) {
+    //The methods that reverse substrings.
+    public static String moveOnesToLeft(String sequence) {
         string = new String(sequence);
-        Pattern pattern = Pattern.compile("1{1}0{1,}1{2,}");
-        Matcher matcher = pattern.matcher(string);
+        Pattern pattern1 = Pattern.compile("1{1}0{1,}1{2,}");
+        Matcher matcher = pattern1.matcher(string);
         while (matcher.find()) {
             StringBuilder subsb = new StringBuilder();
             String subsequence = matcher.group();
             subsb.append(subsequence);
             subsb.reverse();
             string = string.replaceFirst(subsequence, subsb.toString());
-            replaceChars(string);
+            moveOnesToLeft(string);
         }
-
         return string;
     }
 
+    public static String moveZeroesToRight(String sequence) {
+        string = moveOnesToLeft(sequence);
+        Pattern pattern2 = Pattern.compile("1{1}(0{2,}1{1}0{1}|0{3,}1{1}0{2}|0{4,}1{1}0{3}|0{5,}1{1}0{4})1{1}");
+        Matcher matcher = pattern2.matcher(string);
+        while (matcher.find()) {
+            StringBuilder subsb = new StringBuilder();
+            String subsequence = matcher.group();
+            subsb.append(subsequence);
+            subsb.reverse();
+            string = string.replaceFirst(subsequence, subsb.toString());
+            moveZeroesToRight(string);
+        }
+        return string;
+    }
+
+
     // The method compares two sequences received after replacement of substrings.
     public static boolean isSequenceEqual(String one, String two) {
-        String sequenceOne = replaceChars(one);
+        String sequenceOne = moveZeroesToRight(moveOnesToLeft(one));
         System.out.println(sequenceOne);
-        String sequenceTwo = replaceChars(two);
+        String sequenceTwo = moveZeroesToRight(moveOnesToLeft(two));
         System.out.println(sequenceTwo);
         if (sequenceOne.equals(sequenceTwo)) {
             return true;
