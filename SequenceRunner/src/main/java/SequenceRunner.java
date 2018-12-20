@@ -97,7 +97,7 @@ public class SequenceRunner {
 
     public static String moveZeroesToRight(String sequence) {
         string = moveOnesToLeft(sequence);
-        Pattern pattern2 = Pattern.compile("1{1}(0{2,}1{1}0{1}|0{3,}1{1}0{2}|0{4,}1{1}0{3}|0{5,}1{1}0{4})1{1}");
+        Pattern pattern2 = Pattern.compile("1{1}(0{2,}1{1}0{1}|0{3,}1{1}0{2}|0{4,}1{1}0{3}|0{5,}1{1}0{4})1{1,}");
         Matcher matcher = pattern2.matcher(string);
         while (matcher.find()) {
             StringBuilder subsb = new StringBuilder();
@@ -113,9 +113,9 @@ public class SequenceRunner {
 
     // The method compares two sequences received after replacement of substrings.
     public static boolean isSequenceEqual(String one, String two) {
-        String sequenceOne = moveZeroesToRight(moveOnesToLeft(one));
+        String sequenceOne = moveZeroesToRight(one);
         System.out.println(sequenceOne);
-        String sequenceTwo = moveZeroesToRight(moveOnesToLeft(two));
+        String sequenceTwo = moveZeroesToRight(two);
         System.out.println(sequenceTwo);
         if (sequenceOne.equals(sequenceTwo)) {
             return true;
