@@ -5,7 +5,6 @@ public class Ticket {
     private Map<Integer, Boolean> numbers = new HashMap<>();
     int matchedNumbers;
 
-
     public Ticket(int totalNumbers, int range) {
         id = IdGenerator.getId();
         fillTicket(totalNumbers, range);
@@ -13,7 +12,7 @@ public class Ticket {
 
     private void fillTicket(int totalNumbers, int range) {
         List<Integer> availableNumbers = new ArrayList<>(range);
-        for (int i = 1; i <= range ; i++) {
+        for (int i = 1; i <= range; i++) {
             availableNumbers.add(i);
         }
 
@@ -24,17 +23,6 @@ public class Ticket {
             numbers.put(number, false);
         }
     }
-
-//    private void fillTicket(int totalNumbers, int range) {
-//        for (int i = 0; i < totalNumbers; i++) {
-//            Integer number = new Random().nextInt(range) + 1;
-//            if (!numbers.containsKey(number)){
-//                numbers.put(number, false);
-//            } else {
-//                i--;
-//            }
-//        }
-//    }
 
     public void checkNumber(Integer number) {
         if (numbers.containsKey(number)) {

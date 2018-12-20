@@ -4,7 +4,6 @@ import java.io.*;
 * 2. Добавить с консоли текст к первоначальному тексту
 * 3. Разбить на три части и вставить дополнительную строку в середину*/
 
-
 public class Main {
     public static void main(String[] args) throws IOException {
 

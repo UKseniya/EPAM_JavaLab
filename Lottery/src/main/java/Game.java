@@ -9,7 +9,6 @@ public class Game {
     private int range;
     private int playingTickets;
 
-
     public Game(int totalNumbers, int range, int playingTickets) {
         this.totalNumbers = totalNumbers;
         this.range = range;
@@ -36,9 +35,6 @@ public class Game {
                 }
             }
         }
-      /*  for(Ticket t:tickets){
-            System.out.println(t);
-        }*/
     }
 
     public List<Ticket> getWinners() {

@@ -32,7 +32,6 @@ public class Sentence implements Comparable {
         this.words = words;
     }
 
-
     public List<Word> divideWords(String content) {
         String[] array = null;
 

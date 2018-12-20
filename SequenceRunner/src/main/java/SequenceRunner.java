@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /*
 * Output:
 * 1001011001011000111100001101001
@@ -19,7 +20,7 @@ public class SequenceRunner {
         String sequenceOne = reader.readLine();
         String sequenceTwo = reader.readLine();
 
-        try{
+        try {
             checkSequence(sequenceOne, sequenceTwo);
             if (sequenceOne.length() == sequenceTwo.length()) {
                 if (isFirstCharsEqual(sequenceOne, sequenceTwo)) {
@@ -34,17 +35,16 @@ public class SequenceRunner {
             } else {
                 System.out.println("The length of sequences is different.");
             }
-        }
-        catch (RuntimeException exception){
+        } catch (RuntimeException exception) {
             System.out.println(exception.getMessage());
         }
 
     }
 
     //Validation of the sequences entered
-    public static void checkSequence(String sequenceOne, String sequenceTwo){
+    public static void checkSequence(String sequenceOne, String sequenceTwo) {
         if (!sequenceOne.matches("[01]+") || (!sequenceTwo.matches("[01]+"))) {
-            throw new RuntimeException ("The sequence shall contain 0 and 1 only.");
+            throw new RuntimeException("The sequence shall contain 0 and 1 only.");
         }
     }
 

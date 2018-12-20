@@ -28,7 +28,6 @@ public class Paragraph {
         this.sentences = sentences;
     }
 
-
     public List<Sentence> divideSentences(String content) {
         String sentence = null;
         String[] array = null;
