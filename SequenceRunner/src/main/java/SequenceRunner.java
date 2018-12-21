@@ -48,7 +48,7 @@ public class SequenceRunner {
         }
     }
 
-    // The method checks if the first symbol in sequences is the same.
+    //Method to check if the first symbol in sequences is the same.
     public static boolean isFirstCharsEqual(String one, String two) {
         char[] charsOne = one.toCharArray();
         char[] charsTwo = two.toCharArray();
@@ -58,7 +58,7 @@ public class SequenceRunner {
         return false;
     }
 
-    //The methods that reverse substrings.
+    //Methods to reverse substrings.
     public static String moveOnesToLeft(String sequence) {
         string = new String(sequence);
         Pattern pattern1 = Pattern.compile("1{1}0{1,}1{2,}");
@@ -76,20 +76,27 @@ public class SequenceRunner {
 
     public static String moveZeroesToRight(String sequence) {
         string = moveOnesToLeft(sequence);
-        Pattern pattern2 = Pattern.compile("1{1}(0{2,}1{1}0{1}|0{3,}1{1}0{2}|0{4,}1{1}0{3}|0{5,}1{1}0{4})1{1,}");
+        int size = string.length();
+        Pattern pattern2 = Pattern.compile("1{1}(0{1,})1{1}(0{1,})1{1,}");
         Matcher matcher = pattern2.matcher(string);
-        while (matcher.find()) {
-            StringBuilder subsb = new StringBuilder();
+        int nextPosition = 1;
+        while (matcher.find(nextPosition)) {
             String subsequence = matcher.group();
-            subsb.append(subsequence);
-            subsb.reverse();
-            string = string.replaceFirst(subsequence, subsb.toString());
-            moveZeroesToRight(string);
+            int startPosition = matcher.start();
+            int zeroes = calculateZeroes(subsequence);
+            nextPosition = startPosition + zeroes;
+            if (matcher.group(1).length() > matcher.group(2).length()) {
+                StringBuilder subsb = new StringBuilder();
+                subsb.append(subsequence);
+                subsb.reverse();
+                string = string.replaceFirst(subsequence, subsb.toString());
+                moveZeroesToRight(string);
+            }
         }
         return string;
     }
 
-    // The method compares two sequences received after replacement of substrings.
+    //Method to compare two sequences received after replacement of substrings.
     public static boolean isSequenceEqual(String one, String two) {
         String sequenceOne = moveZeroesToRight(one);
         System.out.println(sequenceOne);
@@ -99,5 +106,19 @@ public class SequenceRunner {
             return true;
         }
         return false;
+    }
+    //Method to calculate zeroes in a substring
+    public static int calculateZeroes(String substring){
+        int numberOfZeroes = 0;
+        char[] chars = substring.toCharArray();
+        for (int i = 1; i < chars.length; i++){
+            if (chars[i] == '0'){
+                numberOfZeroes++;
+            }
+            if (chars[i] == '1'){
+                break;
+            }
+        }
+        return numberOfZeroes;
     }
 }
